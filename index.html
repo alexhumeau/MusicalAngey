@@ -36,7 +36,6 @@
             </a>
             
             <!-- Desktop Menu -->
-            <!-- J'ai ajouté la classe 'nav-link' pour pouvoir les cibler en JS -->
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium transition-colors duration-300" id="nav-links">
                 <a href="#festival" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Festival</a>
                 <a href="#programme" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Programme</a>
@@ -69,9 +68,7 @@
     <!-- Hero Section -->
     <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- L'image sera chargée par le JS via l'ID 'img-hero' -->
             <img id="img-hero" src="" alt="Paysage Angey" class="w-full h-full object-cover">
-            <!-- J'ai renforcé le dégradé pour que le texte blanc ressorte mieux -->
             <div class="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/40 to-slate-900/90"></div>
         </div>
         
@@ -80,23 +77,19 @@
                 7, 8 & 9 Mai 2026 • Angey (50)
             </div>
             
-            <!-- Ajout de drop-shadow-2xl pour détacher le titre -->
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight drop-shadow-2xl">
                 Les Musicales d'Angey
             </h1>
             
-            <!-- MODIFICATION ICI : Ajout d'un fond sombre semi-transparent autour du texte -->
             <p class="text-lg md:text-xl text-slate-50 mb-10 max-w-3xl mx-auto leading-relaxed font-medium bg-slate-900/60 backdrop-blur-sm p-6 rounded-2xl border border-white/10 shadow-2xl">
                 Un festival d'exception au cœur de la Baie. <br>
                 Entre Manoir historique et Église à l'acoustique remarquable.
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <!-- Bouton Hero Billetterie -->
                 <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold shadow-xl shadow-blue-900/40 flex items-center justify-center gap-2 group border border-blue-400/30">
                     Billetterie <i data-lucide="ticket" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
                 </a>
-                <!-- Bouton Programme renforcé -->
                 <a href="#programme" class="bg-black/40 backdrop-blur-md border border-white/40 text-white px-8 py-4 rounded-full hover:bg-black/60 transition-all font-semibold shadow-lg">
                     Découvrir le programme
                 </a>
@@ -141,7 +134,7 @@
                 
                 <div class="relative">
                     <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-                        <img id="img-ambiance" src="Images/edition-2023.jpeg" alt="Concert intimiste" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        <img id="img-ambiance" src="" alt="Concert intimiste" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                     </div>
                     <div class="absolute -bottom-8 -left-8 bg-blue-600 p-8 rounded-3xl shadow-xl max-w-xs hidden md:block">
                         <p class="font-medium text-white/90 italic text-lg">"Chaque événement promet un moment suspendu."</p>
@@ -192,7 +185,7 @@
         <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
-        <div class="container mx-auto max-w-6xl relative z-10">
+        <div class="container mx-auto max-w-7xl relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                 <div>
                     <h2 class="text-blue-400 font-bold tracking-wide uppercase text-sm mb-2">Les Talents</h2>
@@ -203,40 +196,52 @@
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-                    <div class="w-20 h-20 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
+            <div class="grid md:grid-cols-4 gap-6">
+                <!-- Card 1: Eric Kadouch -->
+                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
+                    <div class="w-24 h-24 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
+                        <img id="img-piano" src="" alt="Eric Kadouch" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-1">Eric Kadouch</h3>
+                    <p class="text-blue-400 text-sm font-medium mb-4">Piano</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Soliste talentueux, il ouvrira le festival lors d'une soirée "Le classique pas si classique".
+                    </p>
+                </div>
+
+                <!-- Card 2: Philippe Chalard -->
+                 <div class="group relative bg-slate-800/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
+                    <div class="w-24 h-24 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
+                        <img id="img-guitare" src="" alt="Philippe Chalard" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-1">Philippe Chalard</h3>
+                    <p class="text-blue-400 text-sm font-medium mb-4">Guitare</p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Virtuose de la guitare, il accompagnera l'ouverture du festival en duo avec Eric Kadouch.
+                    </p>
+                </div>
+
+                <!-- Card 3: Opus 50 -->
+                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
+                    <div class="w-24 h-24 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
                         <img id="img-opus50" src="" alt="Orchestre" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Opus 50</h3>
+                    <h3 class="text-lg font-bold text-white mb-1">Opus 50</h3>
                     <p class="text-blue-400 text-sm font-medium mb-4">Orchestre Symphonique</p>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Sous la direction de Danielle Lapierre, l'orchestre interprétera des œuvres majeures de Debussy, Smetana et Beethoven.
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Sous la direction de Danielle Lapierre, l'orchestre interprétera des œuvres majeures.
                     </p>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-                    <div class="w-20 h-20 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
-                        <img id="img-piano" src="" alt="Pianiste" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Eric Kadouch</h3>
-                    <p class="text-blue-400 text-sm font-medium mb-4">Piano</p>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Soliste talentueux, il ouvrira le festival lors d'une soirée "Le classique pas si classique" en duo avec guitares.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-                    <div class="w-20 h-20 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
+                <!-- Card 4: Jeunes Talents -->
+                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
+                    <div class="w-24 h-24 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
                         <img id="img-jeunes" src="" alt="Jeunes Talents" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Jeunes Talents</h3>
+                    <h3 class="text-lg font-bold text-white mb-1">Jeunes Talents</h3>
                     <p class="text-blue-400 text-sm font-medium mb-4">Concours / Tremplin</p>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Découvrez les virtuoses de demain. 7 musiciens (cycle 3) s'affronteront devant un jury de professionnels.
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Découvrez les virtuoses de demain. 7 musiciens (cycle 3) s'affronteront.
                     </p>
                 </div>
             </div>
@@ -385,25 +390,79 @@
             // hero: "Images/hero-1.jpeg", 
             // hero: "Images/hero-2.jpeg",
             hero: "Images/hero-3.jpeg", 
-    
+            
             plan: "Images/festival plan 2.png",
-            ambiance: "Images/edition-2023.jpeg",
+            ambiance: "Images/IMG_5474.jpg",
             opus50: "https://images.unsplash.com/photo-1552422535-c45813c61732?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-            piano: "https://images.unsplash.com/photo-1549643276-fbc2bd4d5884?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+            
+            // Photos des Artistes
+            piano: "Images/eric-kadouch-g.png", // Eric Kadouch
+            guitare: "Images/philippe-chalard-g.png", // Philippe Chalard
+            
             jeunes: "https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
         };
 
         const programData = {
             7: [
-                { time: "20h30", location: "Manoir d'Angey", title: "Soirée de Présentation", description: "Le classique pas si classique... Concert d'ouverture avec cocktail inclus.", artists: ["Eric Kadouch (Piano)", "Philippe Chalard (Guitares)"], type: "Concert & Cocktail" }
+                { 
+                    time: "20h30", 
+                    location: "Manoir d'Angey", 
+                    title: "Soirée de Présentation", 
+                    description: "Le classique pas si classique... Concert d'ouverture avec cocktail inclus.", 
+                    artists: [
+                        { name: "Eric Kadouch (Piano)", image: "piano" },
+                        { name: "Philippe Chalard (Guitares)", image: "guitare" }
+                    ], 
+                    type: "Concert & Cocktail" 
+                }
             ],
             8: [
-                { time: "14h30", location: "Manoir d'Angey", title: "Récital Voix et Piano", description: "Un voyage lyrique envoûtant.", artists: ["Eugénie Humeau", "Anna Gusieva"], type: "Concert" },
-                { time: "17h30", location: "Manoir d'Angey", title: "Quatuor à Cordes", description: "Des chefs-d'œuvre de la musique de chambre.", artists: ["Alejandro Serna-Acero (Violon)", "Isabelle Perez (Violon)", "Mayeul Girard (Alto)", "Stéphane André (Violoncelle)"], type: "Concert" }
+                { 
+                    time: "14h30", 
+                    location: "Manoir d'Angey", 
+                    title: "Récital Voix et Piano", 
+                    description: "Un voyage lyrique envoûtant.", 
+                    artists: [
+                        { name: "Eugénie Humeau", image: null },
+                        { name: "Anna Gusieva", image: null }
+                    ], 
+                    type: "Concert" 
+                },
+                { 
+                    time: "17h30", 
+                    location: "Manoir d'Angey", 
+                    title: "Quatuor à Cordes", 
+                    description: "Des chefs-d'œuvre de la musique de chambre.", 
+                    artists: [
+                        { name: "Alejandro Serna-Acero (Violon)", image: null },
+                        { name: "Isabelle Perez (Violon)", image: null },
+                        { name: "Mayeul Girard (Alto)", image: null },
+                        { name: "Stéphane André (Violoncelle)", image: null }
+                    ], 
+                    type: "Concert" 
+                }
             ],
             9: [
-                { time: "14h30", location: "Église d'Angey", title: "Concours Jeunes Talents", description: "7 jeunes musiciens de niveau Cycle 3 (cordes) accompagnés au piano. Prix du Jury et du Public.", artists: ["Jeunes talents régionaux"], type: "Compétition" },
-                { time: "17h30", location: "Manoir d'Angey", title: "Orchestre Symphonique Opus 50", description: "Programme : Debussy (La Mer), Smetana (La Moldau), Ravel, Beethoven, D. Charpentier.", artists: ["Direction : Danielle Lapierre"], type: "Grand Concert" }
+                { 
+                    time: "14h30", 
+                    location: "Église d'Angey", 
+                    title: "Concours Jeunes Talents", 
+                    description: "7 jeunes musiciens de niveau Cycle 3 (cordes) accompagnés au piano. Prix du Jury et du Public.", 
+                    artists: [
+                        { name: "Jeunes talents régionaux", image: null }
+                    ], 
+                    type: "Compétition" 
+                },
+                { 
+                    time: "17h30", 
+                    location: "Manoir d'Angey", 
+                    title: "Orchestre Symphonique Opus 50", 
+                    description: "Programme : Debussy (La Mer), Smetana (La Moldau), Ravel, Beethoven, D. Charpentier.", 
+                    artists: [
+                        { name: "Direction : Danielle Lapierre", image: null }
+                    ], 
+                    type: "Grand Concert" 
+                }
             ]
         };
 
@@ -414,6 +473,7 @@
             document.getElementById('img-ambiance').src = FESTIVAL_IMAGES.ambiance;
             document.getElementById('img-opus50').src = FESTIVAL_IMAGES.opus50;
             document.getElementById('img-piano').src = FESTIVAL_IMAGES.piano;
+            document.getElementById('img-guitare').src = FESTIVAL_IMAGES.guitare;
             document.getElementById('img-jeunes').src = FESTIVAL_IMAGES.jeunes;
             lucide.createIcons();
             switchDay(7);
@@ -504,8 +564,16 @@
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">${event.title}</h3>
                             <p class="text-slate-600 mb-4 leading-relaxed">${event.description}</p>
-                            <div class="space-y-1">
-                                ${event.artists.map(artist => `<div class="flex items-center text-slate-800 font-medium text-sm"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 text-blue-400"></i>${artist}</div>`).join('')}
+                            <div class="space-y-2">
+                                ${event.artists.map(artist => `
+                                    <div class="flex items-center text-slate-800 font-medium text-sm">
+                                        <i data-lucide="chevron-right" class="w-4 h-4 mr-2 text-blue-400"></i>
+                                        ${artist.image ? 
+                                            `<img src="${FESTIVAL_IMAGES[artist.image]}" alt="${artist.name}" class="w-8 h-8 rounded-full object-cover mr-2 border border-slate-200">` 
+                                            : ''}
+                                        ${artist.name}
+                                    </div>
+                                `).join('')}
                             </div>
                         </div>
                     </div>
