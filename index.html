@@ -1,514 +1,545 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, MapPin, Music, Mail, Phone, Info, ChevronRight, User, ArrowRight } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Musicales d'Angey</title>
+    <!-- Tailwind CSS (via CDN pour ne rien avoir à installer) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-const FestivalSite = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeDay, setActiveDay] = useState(7);
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Animations simples */
+        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        
+        .tab-active { background-color: #2563eb; color: white; transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4); }
+        .tab-inactive { background-color: white; color: #94a3b8; }
+        .tab-inactive:hover { color: #2563eb; background-color: #f8fafc; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 selection:bg-blue-200">
 
-  // --- CONFIGURATION DES IMAGES ---
-  // C'est ici que tu pourras mettre tes vraies photos.
-  // Une fois sur ton ordinateur, remplace les liens https://... par le chemin de tes fichiers
-  // Exemple : hero: "./Pano Angey.jpg"
-  const FESTIVAL_IMAGES = {
-    // Ta photo panoramique
-    hero: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", 
-    // Commentaire pour toi : Remplace l'URL ci-dessus par : "./Pano Angey.jpg"
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#hero" class="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2 group">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-serif italic group-hover:bg-blue-700 transition-colors">M</div>
+                <span>Musicales<span class="text-blue-600">.</span></span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="#festival" class="hover:text-blue-600 transition-colors">Festival</a>
+                <a href="#programme" class="hover:text-blue-600 transition-colors">Programme</a>
+                <a href="#artistes" class="hover:text-blue-600 transition-colors">Artistes</a>
+                <a href="#infos" class="hover:text-blue-600 transition-colors">Infos</a>
+                <a href="#contact" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 transform hover:-translate-y-0.5">
+                    Contactez-nous
+                </a>
+            </div>
 
-    // Ton plan du festival
-    plan: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    // Commentaire pour toi : Remplace l'URL ci-dessus par : "./festival plan 2.png"
-
-    // Image d'ambiance (pour la section "Le Festival")
-    ambiance: "https://images.unsplash.com/photo-1507838153414-b4b713384ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    // Commentaire pour toi : Tu peux utiliser IMG_5474.jpg ici : "./IMG_5474.jpg"
-
-    // Images des artistes (Placeholders)
-    opus50: "https://images.unsplash.com/photo-1552422535-c45813c61732?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-    piano: "https://images.unsplash.com/photo-1549643276-fbc2bd4d5884?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-    jeunes: "https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-  };
-
-  // Handle scroll effect for navbar
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const scrollToSection = (id) => {
-    setIsMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const programData = {
-    7: [
-      {
-        time: "20h30",
-        location: "Manoir d'Angey",
-        title: "Soirée de Présentation",
-        description: "Le classique pas si classique... Concert d'ouverture avec cocktail inclus.",
-        artists: ["Eric Kadouch (Piano)", "Philippe Chalard (Guitares)"],
-        type: "Concert & Cocktail"
-      }
-    ],
-    8: [
-      {
-        time: "14h30",
-        location: "Manoir d'Angey",
-        title: "Récital Voix et Piano",
-        description: "Un voyage lyrique envoûtant.",
-        artists: ["Eugénie Humeau", "Anna Gusieva"],
-        type: "Concert"
-      },
-      {
-        time: "17h30",
-        location: "Manoir d'Angey",
-        title: "Quatuor à Cordes",
-        description: "Des chefs-d'œuvre de la musique de chambre.",
-        artists: ["Alejandro Serna-Acero (Violon)", "Isabelle Perez (Violon)", "Mayeul Girard (Alto)", "Stéphane André (Violoncelle)"],
-        type: "Concert"
-      }
-    ],
-    9: [
-      {
-        time: "14h30",
-        location: "Église d'Angey",
-        title: "Concours Jeunes Talents",
-        description: "7 jeunes musiciens de niveau Cycle 3 (cordes) accompagnés au piano. Prix du Jury et du Public.",
-        artists: ["Jeunes talents régionaux"],
-        type: "Compétition"
-      },
-      {
-        time: "17h30",
-        location: "Manoir d'Angey",
-        title: "Orchestre Symphonique Opus 50",
-        description: "Programme : Debussy (La Mer), Smetana (La Moldau), Ravel, Beethoven, D. Charpentier.",
-        artists: ["Direction : Danielle Lapierre"],
-        type: "Grand Concert"
-      }
-    ]
-  };
-
-  return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-blue-200">
-      {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-6'}`}>
-        <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
-          <div className="text-2xl font-bold tracking-tight text-slate-900 cursor-pointer flex items-center gap-2" onClick={() => scrollToSection('hero')}>
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-serif italic">M</div>
-            <span>Musicales<span className="text-blue-600">.</span></span>
-          </div>
-          
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
-            {['Festival', 'Programme', 'Artistes', 'Infos'].map((item) => (
-              <button 
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
-                className="hover:text-blue-600 transition-colors"
-              >
-                {item}
-              </button>
-            ))}
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 transform hover:-translate-y-0.5"
-            >
-              Contactez-nous
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-900 focus:outline-none">
+                <i data-lucide="menu" class="w-7 h-7"></i>
             </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-slate-900" onClick={toggleMenu}>
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
         </div>
 
-        {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-xl py-6 px-4 flex flex-col space-y-4 items-center border-t border-slate-100">
-            {['Festival', 'Programme', 'Artistes', 'Infos'].map((item) => (
-              <button 
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
-                className="text-lg font-medium text-slate-600"
-              >
-                {item}
-              </button>
-            ))}
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="bg-blue-600 text-white px-8 py-3 rounded-full w-full max-w-xs shadow-lg shadow-blue-600/20"
-            >
-              Contactez-nous
-            </button>
-          </div>
-        )}
-      </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-xl py-6 px-4 flex flex-col space-y-4 items-center border-t border-slate-100">
+            <a href="#festival" class="mobile-link text-lg font-medium text-slate-600">Festival</a>
+            <a href="#programme" class="mobile-link text-lg font-medium text-slate-600">Programme</a>
+            <a href="#artistes" class="mobile-link text-lg font-medium text-slate-600">Artistes</a>
+            <a href="#infos" class="mobile-link text-lg font-medium text-slate-600">Infos</a>
+            <a href="#contact" class="mobile-link bg-blue-600 text-white px-8 py-3 rounded-full w-full max-w-xs shadow-lg shadow-blue-600/20 text-center">
+                Contactez-nous
+            </a>
+        </div>
+    </nav>
 
-      {/* Hero Section */}
-      <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={FESTIVAL_IMAGES.hero}
-            alt="Paysage Angey et Musique" 
-            className="w-full h-full object-cover"
-          />
-          {/* Modern gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80"></div>
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- L'image sera chargée par le JS via l'ID 'img-hero' -->
+            <img id="img-hero" src="" alt="Paysage Angey" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80"></div>
         </div>
         
-        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto mt-12">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 text-blue-100 font-medium text-sm mb-6 animate-fade-in-up">
-            7, 8 & 9 Mai 2026 • Angey (50)
-          </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
-            Les Musicales d'Angey
-          </h1>
-          <p className="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Un festival d'exception au cœur de la Baie. <br/>
-            Entre Manoir historique et Église à l'acoustique remarquable.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-             <button 
-              onClick={() => scrollToSection('contact')}
-              className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2 group"
-            >
-              Nous contacter <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
-            </button>
-            <button 
-              onClick={() => scrollToSection('programme')}
-              className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full hover:bg-white/20 transition-all font-semibold"
-            >
-              Découvrir le programme
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* About Festival Section */}
-      <section id="festival" className="py-24 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-blue-600 font-bold tracking-wide uppercase text-sm mb-2">Le Festival</h2>
-                <h3 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-                  Un rêve musical en <span className="text-blue-600">Normandie</span>
-                </h3>
-              </div>
-              
-              <div className="prose prose-slate text-lg text-slate-600 leading-relaxed">
-                <p>
-                  Au cœur du village d’Angey, l’écrin de verdure d’exception du <strong>Manoir d’Angey</strong> ainsi que l’Église accueillent le festival « Les Musicales d’Angey ».
-                </p>
-                <p>
-                  Pendant 3 jours, vivez une expérience musicale mêlant concerts intimistes, orchestre symphonique et tremplin pour jeunes musiciens. De Mozart à D. Charpentier, des chefs-d’œuvre intemporels aux découvertes locales.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                  <Music className="w-8 h-8 text-blue-600 mb-3" />
-                  <h4 className="font-bold text-slate-900">Classique & Moderne</h4>
-                  <p className="text-sm text-slate-500 mt-1">Une programmation éclectique</p>
-                </div>
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                  <User className="w-8 h-8 text-blue-600 mb-3" />
-                  <h4 className="font-bold text-slate-900">Jeunes Talents</h4>
-                  <p className="text-sm text-slate-500 mt-1">Tremplin & Concours</p>
-                </div>
-              </div>
+        <div class="relative z-10 text-center text-white px-4 max-w-5xl mx-auto mt-12 fade-in-up">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 text-blue-100 font-medium text-sm mb-6">
+                7, 8 & 9 Mai 2026 • Angey (50)
             </div>
-            
-            <div className="relative">
-              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-                <img 
-                  src={FESTIVAL_IMAGES.ambiance} 
-                  alt="Concert intimiste" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="absolute -bottom-8 -left-8 bg-blue-600 p-8 rounded-3xl shadow-xl max-w-xs hidden md:block">
-                <p className="font-medium text-white/90 italic text-lg">"Chaque événement promet un moment suspendu."</p>
-              </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
+                Les Musicales d'Angey
+            </h1>
+            <p class="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Un festival d'exception au cœur de la Baie. <br>
+                Entre Manoir historique et Église à l'acoustique remarquable.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2 group">
+                    Nous contacter <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#programme" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full hover:bg-white/20 transition-all font-semibold">
+                    Découvrir le programme
+                </a>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      {/* Program Section */}
-      <section id="programme" className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-blue-600 font-bold tracking-wide uppercase text-sm mb-2">Agenda</h2>
-            <h3 className="text-4xl font-bold text-slate-900 mb-4">La Programmation 2026</h3>
-            <p className="text-slate-500 text-lg">Trois jours de musique et d'émotion</p>
-          </div>
-
-          {/* Date Selector */}
-          <div className="flex justify-center mb-16 gap-4 flex-wrap">
-            {[7, 8, 9].map((day) => (
-              <button
-                key={day}
-                onClick={() => setActiveDay(day)}
-                className={`flex flex-col items-center justify-center w-28 h-32 rounded-2xl transition-all duration-300 ${
-                  activeDay === day 
-                    ? 'bg-blue-600 text-white shadow-xl shadow-blue-600/30 translate-y-[-4px]' 
-                    : 'bg-white text-slate-400 hover:bg-white hover:text-blue-600 hover:shadow-lg'
-                }`}
-              >
-                <span className="text-xs font-bold tracking-widest uppercase mb-1">{day === 9 ? 'Samedi' : day === 8 ? 'Vendredi' : 'Jeudi'}</span>
-                <span className="text-4xl font-bold mb-1">{day}</span>
-                <span className="text-xs font-medium opacity-80">MAI</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Timeline */}
-          <div className="space-y-6">
-            {programData[activeDay].map((event, index) => (
-              <div key={index} className="group bg-white rounded-3xl p-1 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100">
-                <div className="flex flex-col md:flex-row h-full">
-                  {/* Time & Location Column */}
-                  <div className="md:w-1/4 p-6 bg-slate-50 rounded-[20px] flex flex-col justify-center items-center text-center group-hover:bg-blue-50 transition-colors">
-                    <div className="text-2xl font-bold text-blue-600 mb-2">{event.time}</div>
-                    <div className="flex items-center text-slate-500 text-sm font-medium bg-white px-3 py-1 rounded-full shadow-sm">
-                      <MapPin size={14} className="mr-1" />
-                      {event.location}
+    <!-- Festival / About Section -->
+    <section id="festival" class="py-24 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-blue-600 font-bold tracking-wide uppercase text-sm mb-2">Le Festival</h2>
+                        <h3 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+                            Un rêve musical en <span class="text-blue-600">Normandie</span>
+                        </h3>
                     </div>
-                  </div>
-                  
-                  {/* Content Column */}
-                  <div className="md:w-3/4 p-8 flex flex-col justify-center">
-                    <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full w-fit mb-3">
-                      {event.type}
+                    
+                    <div class="text-lg text-slate-600 leading-relaxed space-y-4">
+                        <p>
+                            Au cœur du village d’Angey, l’écrin de verdure d’exception du <strong>Manoir d’Angey</strong> ainsi que l’Église accueillent le festival « Les Musicales d’Angey ».
+                        </p>
+                        <p>
+                            Pendant 3 jours, vivez une expérience musicale mêlant concerts intimistes, orchestre symphonique et tremplin pour jeunes musiciens. De Mozart à D. Charpentier, des chefs-d’œuvre intemporels aux découvertes locales.
+                        </p>
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">{event.title}</h3>
-                    <p className="text-slate-600 mb-4 leading-relaxed">{event.description}</p>
-                    <div className="space-y-1">
-                      {event.artists.map((artist, idx) => (
-                        <div key={idx} className="flex items-center text-slate-800 font-medium text-sm">
-                          <ChevronRight size={16} className="mr-2 text-blue-400" />
-                          {artist}
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <i data-lucide="music" class="w-8 h-8 text-blue-600 mb-3"></i>
+                            <h4 class="font-bold text-slate-900">Classique & Moderne</h4>
+                            <p class="text-sm text-slate-500 mt-1">Une programmation éclectique</p>
                         </div>
-                      ))}
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <i data-lucide="user" class="w-8 h-8 text-blue-600 mb-3"></i>
+                            <h4 class="font-bold text-slate-900">Jeunes Talents</h4>
+                            <p class="text-sm text-slate-500 mt-1">Tremplin & Concours</p>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Artists Highlight Section */}
-      <section id="artistes" className="py-24 px-4 bg-slate-900 text-white relative overflow-hidden">
-        {/* Background elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div>
-              <h2 className="text-blue-400 font-bold tracking-wide uppercase text-sm mb-2">Les Talents</h2>
-              <h3 className="text-4xl font-bold text-white">Artistes Invités</h3>
-            </div>
-            <p className="text-slate-400 max-w-md text-lg">
-              Des virtuoses de renommée régionale et nationale, ainsi que l'excellence de demain.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="group relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-              <div className="w-20 h-20 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
-                 <img src={FESTIVAL_IMAGES.opus50} alt="Violoniste" className="w-full h-full object-cover"/>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-1">Opus 50</h3>
-              <p className="text-blue-400 text-sm font-medium mb-4">Orchestre Symphonique</p>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Sous la direction de Danielle Lapierre, l'orchestre interprétera des œuvres majeures de Debussy, Smetana et Beethoven.
-              </p>
-            </div>
-
-             {/* Card 2 */}
-             <div className="group relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-              <div className="w-20 h-20 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
-                 <img src={FESTIVAL_IMAGES.piano} alt="Pianiste" className="w-full h-full object-cover"/>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-1">Eric Kadouch</h3>
-              <p className="text-blue-400 text-sm font-medium mb-4">Piano</p>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Soliste talentueux, il ouvrira le festival lors d'une soirée "Le classique pas si classique" en duo avec guitares.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="group relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-               <div className="w-20 h-20 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
-                 <img src={FESTIVAL_IMAGES.jeunes} alt="Jeunes Talents" className="w-full h-full object-cover"/>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-1">Jeunes Talents</h3>
-              <p className="text-blue-400 text-sm font-medium mb-4">Concours / Tremplin</p>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Découvrez les virtuoses de demain. 7 musiciens (cycle 3) s'affronteront devant un jury de professionnels.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Practical Info Section */}
-      <section id="infos" className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-16">
-            
-            {/* Left Column: Prices & Details */}
-            <div>
-              <h2 className="text-blue-600 font-bold tracking-wide uppercase text-sm mb-2">Pratique</h2>
-              <h3 className="text-4xl font-bold text-slate-900 mb-8">Informations</h3>
-              
-              <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 mb-8">
-                <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3 text-sm">€</span>
-                  Tarifs
-                </h3>
-                <ul className="space-y-4">
-                  <li className="flex justify-between items-center p-3 bg-white rounded-xl">
-                    <span className="text-slate-600 font-medium">Entrée simple</span>
-                    <span className="font-bold text-slate-900">15 €</span>
-                  </li>
-                  <li className="flex justify-between items-center p-3 bg-white rounded-xl">
-                    <span className="text-slate-600 font-medium">Pass 1 Jour</span>
-                    <span className="font-bold text-slate-900">25 €</span>
-                  </li>
-                  <li className="flex justify-between items-center p-3 bg-white rounded-xl">
-                    <span className="text-slate-600 font-medium">Pass 2 Jours</span>
-                    <span className="font-bold text-slate-900">42 €</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white p-6 rounded-3xl shadow-lg shadow-slate-100 text-center border border-slate-100">
-                   <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 text-blue-600">
-                     <span className="font-bold text-xl">P</span>
-                   </div>
-                   <h4 className="font-bold text-slate-900">Parking</h4>
-                   <p className="text-sm text-slate-500">Centre bourg d'Angey</p>
+                
+                <div class="relative">
+                    <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+                        <img id="img-ambiance" src="" alt="Concert intimiste" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute -bottom-8 -left-8 bg-blue-600 p-8 rounded-3xl shadow-xl max-w-xs hidden md:block">
+                        <p class="font-medium text-white/90 italic text-lg">"Chaque événement promet un moment suspendu."</p>
+                    </div>
                 </div>
-                 <div className="bg-white p-6 rounded-3xl shadow-lg shadow-slate-100 text-center border border-slate-100">
-                   <div className="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 text-blue-600">
-                     <span className="font-bold text-xl">🍹</span>
-                   </div>
-                   <h4 className="font-bold text-slate-900">Buvette</h4>
-                   <p className="text-sm text-slate-500">Au Manoir d'Angey</p>
-                </div>
-              </div>
             </div>
-
-            {/* Right Column: Map/Locations */}
-            <div className="h-full min-h-[400px] bg-slate-200 rounded-[2.5rem] overflow-hidden relative shadow-inner">
-               <img 
-                src={FESTIVAL_IMAGES.plan}
-                alt="Plan du festival" 
-                className="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 transition-all duration-700"
-               />
-               <div className="absolute inset-0 flex items-center justify-center p-8">
-                 <div className="bg-white/95 backdrop-blur-md p-8 rounded-3xl shadow-2xl max-w-sm text-center transform hover:scale-105 transition-transform duration-300">
-                   <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-600/30">
-                     <MapPin className="w-8 h-8 text-white" />
-                   </div>
-                   <h3 className="font-bold text-xl mb-1 text-slate-900">Angey (50)</h3>
-                   <p className="text-slate-500 mb-6 text-sm">Entre Avranches et Granville</p>
-                   <div className="space-y-3 text-sm text-left bg-slate-50 p-4 rounded-xl">
-                     <div className="flex items-center text-slate-700"><div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div> Manoir d'Angey</div>
-                     <div className="flex items-center text-slate-700"><div className="w-2 h-2 bg-slate-400 rounded-full mr-3"></div> Église d'Angey</div>
-                   </div>
-                 </div>
-               </div>
-            </div>
-
-          </div>
         </div>
-      </section>
+    </section>
 
-      {/* Footer / Contact */}
-      <footer id="contact" className="bg-slate-900 text-slate-300 py-20 border-t border-slate-800">
-        <div className="container mx-auto px-4">
-          
-          {/* Main CTA Block */}
-          <div className="bg-blue-600 rounded-3xl p-12 md:p-16 text-center relative overflow-hidden mb-16 shadow-2xl shadow-blue-900/50">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2"></div>
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/2 translate-x-1/2"></div>
-            
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10">Envie de participer à l'aventure ?</h2>
-            <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto relative z-10">
-              Pour réserver vos places, devenir bénévole ou soutenir le festival, n'hésitez pas à nous contacter.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-              <a href="mailto:contact@lesmusicalesdangey.fr" className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition-colors flex items-center justify-center">
-                <Mail className="mr-2" size={20} />
-                Nous écrire
-              </a>
-              <button className="bg-blue-700 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-800 transition-colors flex items-center justify-center border border-blue-500">
-                <Phone className="mr-2" size={20} />
-                02 33 00 00 00
-              </button>
+    <!-- Programme Section -->
+    <section id="programme" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="text-center mb-16">
+                <h2 class="text-blue-600 font-bold tracking-wide uppercase text-sm mb-2">Agenda</h2>
+                <h3 class="text-4xl font-bold text-slate-900 mb-4">La Programmation 2026</h3>
+                <p class="text-slate-500 text-lg">Trois jours de musique et d'émotion</p>
             </div>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-12 text-sm border-b border-slate-800 pb-12">
-            <div>
-              <div className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-serif italic text-sm">M</div>
-                Musicales.
-              </div>
-              <p className="opacity-60 leading-relaxed max-w-xs">
-                Un événement organisé avec passion par l'association <strong>Angey Baie Bocage Animations (ABBA)</strong>.
-              </p>
+            <!-- Tabs -->
+            <div class="flex justify-center mb-16 gap-4 flex-wrap">
+                <button onclick="switchDay(7)" id="tab-7" class="tab-active flex flex-col items-center justify-center w-28 h-32 rounded-2xl transition-all duration-300">
+                    <span class="text-xs font-bold tracking-widest uppercase mb-1">Jeudi</span>
+                    <span class="text-4xl font-bold mb-1">7</span>
+                    <span class="text-xs font-medium opacity-80">MAI</span>
+                </button>
+                <button onclick="switchDay(8)" id="tab-8" class="tab-inactive flex flex-col items-center justify-center w-28 h-32 rounded-2xl transition-all duration-300">
+                    <span class="text-xs font-bold tracking-widest uppercase mb-1">Vendredi</span>
+                    <span class="text-4xl font-bold mb-1">8</span>
+                    <span class="text-xs font-medium opacity-80">MAI</span>
+                </button>
+                <button onclick="switchDay(9)" id="tab-9" class="tab-inactive flex flex-col items-center justify-center w-28 h-32 rounded-2xl transition-all duration-300">
+                    <span class="text-xs font-bold tracking-widest uppercase mb-1">Samedi</span>
+                    <span class="text-4xl font-bold mb-1">9</span>
+                    <span class="text-xs font-medium opacity-80">MAI</span>
+                </button>
+            </div>
+
+            <!-- Events Container -->
+            <div id="events-container" class="space-y-6">
+                <!-- Content will be injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Artistes Section -->
+    <section id="artistes" class="py-24 px-4 bg-slate-900 text-white relative overflow-hidden">
+        <!-- Background blobls -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-blue-400 font-bold tracking-wide uppercase text-sm mb-2">Les Talents</h2>
+                    <h3 class="text-4xl font-bold text-white">Artistes Invités</h3>
+                </div>
+                <p class="text-slate-400 max-w-md text-lg">
+                    Des virtuoses de renommée régionale et nationale, ainsi que l'excellence de demain.
+                </p>
             </div>
             
-            <div>
-              <h4 className="text-white font-bold mb-6">Navigation</h4>
-              <ul className="space-y-3 opacity-60">
-                <li className="hover:text-blue-400 transition-colors cursor-pointer">Le Festival</li>
-                <li className="hover:text-blue-400 transition-colors cursor-pointer">Programmation</li>
-                <li className="hover:text-blue-400 transition-colors cursor-pointer">Infos Pratiques</li>
-                <li className="hover:text-blue-400 transition-colors cursor-pointer">Mentions Légales</li>
-              </ul>
-            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
+                    <div class="w-20 h-20 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
+                        <img id="img-opus50" src="" alt="Orchestre" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1">Opus 50</h3>
+                    <p class="text-blue-400 text-sm font-medium mb-4">Orchestre Symphonique</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Sous la direction de Danielle Lapierre, l'orchestre interprétera des œuvres majeures de Debussy, Smetana et Beethoven.
+                    </p>
+                </div>
 
-            <div>
-               <h4 className="text-white font-bold mb-6">Partenaires</h4>
-               <div className="flex gap-4 opacity-40 mb-4">
-                 <div className="h-10 w-16 bg-white/20 rounded"></div>
-                 <div className="h-10 w-16 bg-white/20 rounded"></div>
-                 <div className="h-10 w-16 bg-white/20 rounded"></div>
-               </div>
-               <p className="opacity-40 text-xs">
-                 Avec le soutien du Conseil Départemental de la Manche et de la commune de Sartilly-Baie-Bocage.
-               </p>
+                <!-- Card 2 -->
+                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
+                    <div class="w-20 h-20 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
+                        <img id="img-piano" src="" alt="Pianiste" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1">Eric Kadouch</h3>
+                    <p class="text-blue-400 text-sm font-medium mb-4">Piano</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Soliste talentueux, il ouvrira le festival lors d'une soirée "Le classique pas si classique" en duo avec guitares.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
+                    <div class="w-20 h-20 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
+                        <img id="img-jeunes" src="" alt="Jeunes Talents" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1">Jeunes Talents</h3>
+                    <p class="text-blue-400 text-sm font-medium mb-4">Concours / Tremplin</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Découvrez les virtuoses de demain. 7 musiciens (cycle 3) s'affronteront devant un jury de professionnels.
+                    </p>
+                </div>
             </div>
-          </div>
-          
-          <div className="pt-8 text-center text-xs opacity-30 flex justify-between items-center">
-            <span>&copy; 2026 Les Musicales d'Angey.</span>
-            <span>Design moderne & frais.</span>
-          </div>
         </div>
-      </footer>
-    </div>
-  );
-};
+    </section>
 
-export default FestivalSite;
+    <!-- Infos Pratiques -->
+    <section id="infos" class="py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Info Left -->
+                <div>
+                    <h2 class="text-blue-600 font-bold tracking-wide uppercase text-sm mb-2">Pratique</h2>
+                    <h3 class="text-4xl font-bold text-slate-900 mb-8">Informations</h3>
+                    
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 mb-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                            <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3 text-sm">€</span>
+                            Tarifs
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm">
+                                <span class="text-slate-600 font-medium">Entrée simple</span>
+                                <span class="font-bold text-slate-900">15 €</span>
+                            </li>
+                            <li class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm">
+                                <span class="text-slate-600 font-medium">Pass 1 Jour</span>
+                                <span class="font-bold text-slate-900">25 €</span>
+                            </li>
+                            <li class="flex justify-between items-center p-3 bg-white rounded-xl shadow-sm">
+                                <span class="text-slate-600 font-medium">Pass 2 Jours</span>
+                                <span class="font-bold text-slate-900">42 €</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-6 rounded-3xl shadow-lg shadow-slate-100 text-center border border-slate-100">
+                            <div class="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 text-blue-600">
+                                <span class="font-bold text-xl">P</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900">Parking</h4>
+                            <p class="text-sm text-slate-500">Centre bourg d'Angey</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl shadow-lg shadow-slate-100 text-center border border-slate-100">
+                            <div class="bg-blue-50 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 text-blue-600">
+                                <span class="font-bold text-xl">🍹</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900">Buvette</h4>
+                            <p class="text-sm text-slate-500">Au Manoir d'Angey</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Right (Map Image) -->
+                <div class="h-full min-h-[400px] bg-slate-200 rounded-[2.5rem] overflow-hidden relative shadow-inner group">
+                    <img id="img-plan" src="" alt="Plan du festival" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
+                    <div class="absolute inset-0 flex items-center justify-center p-8 pointer-events-none">
+                        <div class="bg-white/95 backdrop-blur-md p-8 rounded-3xl shadow-2xl max-w-sm text-center transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-600/30">
+                                <i data-lucide="map-pin" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-xl mb-1 text-slate-900">Angey (50)</h3>
+                            <p class="text-slate-500 mb-6 text-sm">Entre Avranches et Granville</p>
+                            <div class="space-y-3 text-sm text-left bg-slate-50 p-4 rounded-xl">
+                                <div class="flex items-center text-slate-700"><div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div> Manoir d'Angey</div>
+                                <div class="flex items-center text-slate-700"><div class="w-2 h-2 bg-slate-400 rounded-full mr-3"></div> Église d'Angey</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-slate-900 text-slate-300 py-20 border-t border-slate-800">
+        <div class="container mx-auto px-4">
+            
+            <!-- Main CTA Block -->
+            <div class="bg-blue-600 rounded-3xl p-12 md:p-16 text-center relative overflow-hidden mb-16 shadow-2xl shadow-blue-900/50">
+                <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2"></div>
+                <div class="absolute bottom-0 right-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/2 translate-x-1/2"></div>
+                
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10">Envie de participer à l'aventure ?</h2>
+                <p class="text-blue-100 text-lg mb-8 max-w-2xl mx-auto relative z-10">
+                    Pour réserver vos places, devenir bénévole ou soutenir le festival, n'hésitez pas à nous contacter.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+                    <a href="mailto:contact@lesmusicalesdangey.fr" class="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition-colors flex items-center justify-center">
+                        <i data-lucide="mail" class="mr-2 w-5 h-5"></i>
+                        Nous écrire
+                    </a>
+                    <a href="tel:0233000000" class="bg-blue-700 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-800 transition-colors flex items-center justify-center border border-blue-500">
+                        <i data-lucide="phone" class="mr-2 w-5 h-5"></i>
+                        02 33 00 00 00
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12 text-sm border-b border-slate-800 pb-12">
+                <div>
+                    <div class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-serif italic text-sm">M</div>
+                        Musicales.
+                    </div>
+                    <p class="opacity-60 leading-relaxed max-w-xs">
+                        Un événement organisé avec passion par l'association <strong>Angey Baie Bocage Animations (ABBA)</strong>.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Navigation</h4>
+                    <ul class="space-y-3 opacity-60">
+                        <li><a href="#festival" class="hover:text-blue-400 transition-colors">Le Festival</a></li>
+                        <li><a href="#programme" class="hover:text-blue-400 transition-colors">Programmation</a></li>
+                        <li><a href="#infos" class="hover:text-blue-400 transition-colors">Infos Pratiques</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Mentions Légales</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">Partenaires</h4>
+                    <div class="flex gap-4 opacity-40 mb-4">
+                        <div class="h-10 w-16 bg-white/20 rounded"></div>
+                        <div class="h-10 w-16 bg-white/20 rounded"></div>
+                        <div class="h-10 w-16 bg-white/20 rounded"></div>
+                    </div>
+                    <p class="opacity-40 text-xs">
+                        Avec le soutien du Conseil Départemental de la Manche et de la commune de Sartilly-Baie-Bocage.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="pt-8 text-center text-xs opacity-30 flex justify-between items-center">
+                <span>&copy; 2026 Les Musicales d'Angey.</span>
+                <span>Design moderne & frais.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- CONFIGURATION DES IMAGES ---
+        // INSTRUCTIONS POUR VOUS :
+        // Remplacez les liens ci-dessous par le nom de vos fichiers images
+        // Assurez-vous que les images sont dans le même dossier que ce fichier HTML
+        
+        const FESTIVAL_IMAGES = {
+            hero: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", 
+            // Remplacer par : "./Pano Angey.jpg"
+
+            plan: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+            // Remplacer par : "./festival plan 2.png"
+
+            ambiance: "https://images.unsplash.com/photo-1507838153414-b4b713384ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            // Remplacer par : "./IMG_5474.jpg"
+
+            // Images des artistes (Laissez tel quel ou mettez vos propres images si vous en avez)
+            opus50: "https://images.unsplash.com/photo-1552422535-c45813c61732?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+            piano: "https://images.unsplash.com/photo-1549643276-fbc2bd4d5884?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+            jeunes: "https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+        };
+
+        // --- DONNÉES DU PROGRAMME ---
+        const programData = {
+            7: [
+                {
+                    time: "20h30",
+                    location: "Manoir d'Angey",
+                    title: "Soirée de Présentation",
+                    description: "Le classique pas si classique... Concert d'ouverture avec cocktail inclus.",
+                    artists: ["Eric Kadouch (Piano)", "Philippe Chalard (Guitares)"],
+                    type: "Concert & Cocktail"
+                }
+            ],
+            8: [
+                {
+                    time: "14h30",
+                    location: "Manoir d'Angey",
+                    title: "Récital Voix et Piano",
+                    description: "Un voyage lyrique envoûtant.",
+                    artists: ["Eugénie Humeau", "Anna Gusieva"],
+                    type: "Concert"
+                },
+                {
+                    time: "17h30",
+                    location: "Manoir d'Angey",
+                    title: "Quatuor à Cordes",
+                    description: "Des chefs-d'œuvre de la musique de chambre.",
+                    artists: ["Alejandro Serna-Acero (Violon)", "Isabelle Perez (Violon)", "Mayeul Girard (Alto)", "Stéphane André (Violoncelle)"],
+                    type: "Concert"
+                }
+            ],
+            9: [
+                {
+                    time: "14h30",
+                    location: "Église d'Angey",
+                    title: "Concours Jeunes Talents",
+                    description: "7 jeunes musiciens de niveau Cycle 3 (cordes) accompagnés au piano. Prix du Jury et du Public.",
+                    artists: ["Jeunes talents régionaux"],
+                    type: "Compétition"
+                },
+                {
+                    time: "17h30",
+                    location: "Manoir d'Angey",
+                    title: "Orchestre Symphonique Opus 50",
+                    description: "Programme : Debussy (La Mer), Smetana (La Moldau), Ravel, Beethoven, D. Charpentier.",
+                    artists: ["Direction : Danielle Lapierre"],
+                    type: "Grand Concert"
+                }
+            ]
+        };
+
+        // --- INITIALISATION ---
+        window.addEventListener('DOMContentLoaded', () => {
+            // 1. Charger les images
+            document.getElementById('img-hero').src = FESTIVAL_IMAGES.hero;
+            document.getElementById('img-plan').src = FESTIVAL_IMAGES.plan;
+            document.getElementById('img-ambiance').src = FESTIVAL_IMAGES.ambiance;
+            document.getElementById('img-opus50').src = FESTIVAL_IMAGES.opus50;
+            document.getElementById('img-piano').src = FESTIVAL_IMAGES.piano;
+            document.getElementById('img-jeunes').src = FESTIVAL_IMAGES.jeunes;
+
+            // 2. Charger les icones
+            lucide.createIcons();
+
+            // 3. Charger le programme par défaut (Jour 7)
+            switchDay(7);
+        });
+
+        // --- FONCTIONNALITÉS ---
+
+        // Toggle Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('bg-transparent', 'py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('bg-transparent', 'py-6');
+            }
+        });
+
+        // Programme Tab Switcher
+        function switchDay(day) {
+            // Update Tab Styles
+            [7, 8, 9].forEach(d => {
+                const tab = document.getElementById(`tab-${d}`);
+                if (d === day) {
+                    tab.className = 'tab-active flex flex-col items-center justify-center w-28 h-32 rounded-2xl transition-all duration-300';
+                } else {
+                    tab.className = 'tab-inactive flex flex-col items-center justify-center w-28 h-32 rounded-2xl transition-all duration-300';
+                }
+            });
+
+            // Update Content
+            const container = document.getElementById('events-container');
+            container.innerHTML = ''; // Clear current content
+            
+            const events = programData[day];
+            
+            events.forEach(event => {
+                const html = `
+                <div class="group bg-white rounded-3xl p-1 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 fade-in-up">
+                    <div class="flex flex-col md:flex-row h-full">
+                        <div class="md:w-1/4 p-6 bg-slate-50 rounded-[20px] flex flex-col justify-center items-center text-center group-hover:bg-blue-50 transition-colors">
+                            <div class="text-2xl font-bold text-blue-600 mb-2">${event.time}</div>
+                            <div class="flex items-center text-slate-500 text-sm font-medium bg-white px-3 py-1 rounded-full shadow-sm">
+                                <i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>
+                                ${event.location}
+                            </div>
+                        </div>
+                        <div class="md:w-3/4 p-8 flex flex-col justify-center">
+                            <div class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full w-fit mb-3">
+                                ${event.type}
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">${event.title}</h3>
+                            <p class="text-slate-600 mb-4 leading-relaxed">${event.description}</p>
+                            <div class="space-y-1">
+                                ${event.artists.map(artist => `
+                                    <div class="flex items-center text-slate-800 font-medium text-sm">
+                                        <i data-lucide="chevron-right" class="w-4 h-4 mr-2 text-blue-400"></i>
+                                        ${artist}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+                container.innerHTML += html;
+            });
+            
+            // Re-initialize icons for the new content
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
