@@ -30,26 +30,27 @@
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
         <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
             <!-- Logo -->
-            <a href="#hero" class="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2 group">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-serif italic group-hover:bg-blue-700 transition-colors">M</div>
-                <span>Les Musicales d'Angey<span class="text-blue-600">.</span></span>
+            <a href="#hero" class="text-2xl font-bold tracking-tight flex items-center gap-2 group transition-colors duration-300 text-white drop-shadow-md" id="nav-logo">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-serif italic group-hover:bg-blue-700 transition-colors shadow-lg">M</div>
+                <span>Les Musicales d'Angey<span class="text-blue-500">.</span></span>
             </a>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
-                <a href="#festival" class="hover:text-blue-600 transition-colors">Festival</a>
-                <a href="#programme" class="hover:text-blue-600 transition-colors">Programme</a>
-                <a href="#artistes" class="hover:text-blue-600 transition-colors">Artistes</a>
-                <a href="#infos" class="hover:text-blue-600 transition-colors">Infos</a>
+            <!-- J'ai ajouté la classe 'nav-link' pour pouvoir les cibler en JS -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium transition-colors duration-300" id="nav-links">
+                <a href="#festival" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Festival</a>
+                <a href="#programme" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Programme</a>
+                <a href="#artistes" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Artistes</a>
+                <a href="#infos" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Infos</a>
                 <!-- Bouton Billetterie HelloAsso -->
-                <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 transform hover:-translate-y-0.5 flex items-center gap-2">
+                <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30 transform hover:-translate-y-0.5 flex items-center gap-2 border border-blue-500/50">
                     <i data-lucide="ticket" class="w-4 h-4"></i> Billetterie
                 </a>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-slate-900 focus:outline-none">
-                <i data-lucide="menu" class="w-7 h-7"></i>
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none drop-shadow-md">
+                <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
         </div>
 
@@ -70,26 +71,29 @@
         <div class="absolute inset-0 z-0">
             <!-- L'image sera chargée par le JS via l'ID 'img-hero' -->
             <img id="img-hero" src="" alt="Paysage Angey" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80"></div>
+            <!-- J'ai renforcé le dégradé pour que le texte blanc ressorte mieux -->
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/40 to-slate-900/90"></div>
         </div>
         
         <div class="relative z-10 text-center text-white px-4 max-w-5xl mx-auto mt-12 fade-in-up">
-            <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 text-blue-100 font-medium text-sm mb-6">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-blue-600/30 backdrop-blur-md border border-blue-400/50 text-blue-50 font-medium text-sm mb-6 shadow-lg">
                 7, 8 & 9 Mai 2026 • Angey (50)
             </div>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
+            <!-- Ajout de drop-shadow-xl pour détacher le titre de l'image -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight drop-shadow-xl">
                 Les Musicales d'Angey
             </h1>
-            <p class="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg md:text-xl text-slate-100 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md font-medium">
                 Un festival d'exception au cœur de la Baie. <br>
                 Entre Manoir historique et Église à l'acoustique remarquable.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <!-- Bouton Hero Billetterie -->
-                <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2 group">
+                <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold shadow-xl shadow-blue-900/40 flex items-center justify-center gap-2 group border border-blue-400/30">
                     Billetterie <i data-lucide="ticket" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
                 </a>
-                <a href="#programme" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full hover:bg-white/20 transition-all font-semibold">
+                <!-- Bouton Programme renforcé : Fond plus sombre pour lisibilité -->
+                <a href="#programme" class="bg-black/40 backdrop-blur-md border border-white/40 text-white px-8 py-4 rounded-full hover:bg-black/60 transition-all font-semibold shadow-lg">
                     Découvrir le programme
                 </a>
             </div>
@@ -373,127 +377,101 @@
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // --- CONFIGURATION DES IMAGES ---
-        // INSTRUCTIONS POUR VOUS :
-        // J'ai configuré les chemins pour pointer vers le dossier Images/
-        // Vous pouvez changer l'image Hero en décommentant (enlevant les //) devant la ligne souhaitée
-        
         const FESTIVAL_IMAGES = {
-            // --- CHOIX DE LA COUVERTURE (HERO) ---
-            // Décommentez la ligne correspondant à l'image que vous voulez utiliser :
-            hero: "Images/hero-1.jpeg", 
-            // hero: "Images/hero-2.jpg",
-            // hero: "Images/hero-3.jpg",
+            // hero: "Images/hero-1.jpeg", 
+            // hero: "Images/hero-2.jpeg",
+            hero: "Images/hero-3.jpeg", 
             
-            // --- AUTRES IMAGES ---
-            // J'ai mis à jour les chemins pour utiliser le dossier Images/
             plan: "Images/festival plan 2.png",
             ambiance: "Images/IMG_5474.jpg",
-
-            // Images des artistes (Laissez tel quel ou mettez vos propres images dans Images/)
             opus50: "https://images.unsplash.com/photo-1552422535-c45813c61732?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
             piano: "https://images.unsplash.com/photo-1549643276-fbc2bd4d5884?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
             jeunes: "https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
         };
 
-        // --- DONNÉES DU PROGRAMME ---
         const programData = {
             7: [
-                {
-                    time: "20h30",
-                    location: "Manoir d'Angey",
-                    title: "Soirée de Présentation",
-                    description: "Le classique pas si classique... Concert d'ouverture avec cocktail inclus.",
-                    artists: ["Eric Kadouch (Piano)", "Philippe Chalard (Guitares)"],
-                    type: "Concert & Cocktail"
-                }
+                { time: "20h30", location: "Manoir d'Angey", title: "Soirée de Présentation", description: "Le classique pas si classique... Concert d'ouverture avec cocktail inclus.", artists: ["Eric Kadouch (Piano)", "Philippe Chalard (Guitares)"], type: "Concert & Cocktail" }
             ],
             8: [
-                {
-                    time: "14h30",
-                    location: "Manoir d'Angey",
-                    title: "Récital Voix et Piano",
-                    description: "Un voyage lyrique envoûtant.",
-                    artists: ["Eugénie Humeau", "Anna Gusieva"],
-                    type: "Concert"
-                },
-                {
-                    time: "17h30",
-                    location: "Manoir d'Angey",
-                    title: "Quatuor à Cordes",
-                    description: "Des chefs-d'œuvre de la musique de chambre.",
-                    artists: ["Alejandro Serna-Acero (Violon)", "Isabelle Perez (Violon)", "Mayeul Girard (Alto)", "Stéphane André (Violoncelle)"],
-                    type: "Concert"
-                }
+                { time: "14h30", location: "Manoir d'Angey", title: "Récital Voix et Piano", description: "Un voyage lyrique envoûtant.", artists: ["Eugénie Humeau", "Anna Gusieva"], type: "Concert" },
+                { time: "17h30", location: "Manoir d'Angey", title: "Quatuor à Cordes", description: "Des chefs-d'œuvre de la musique de chambre.", artists: ["Alejandro Serna-Acero (Violon)", "Isabelle Perez (Violon)", "Mayeul Girard (Alto)", "Stéphane André (Violoncelle)"], type: "Concert" }
             ],
             9: [
-                {
-                    time: "14h30",
-                    location: "Église d'Angey",
-                    title: "Concours Jeunes Talents",
-                    description: "7 jeunes musiciens de niveau Cycle 3 (cordes) accompagnés au piano. Prix du Jury et du Public.",
-                    artists: ["Jeunes talents régionaux"],
-                    type: "Compétition"
-                },
-                {
-                    time: "17h30",
-                    location: "Manoir d'Angey",
-                    title: "Orchestre Symphonique Opus 50",
-                    description: "Programme : Debussy (La Mer), Smetana (La Moldau), Ravel, Beethoven, D. Charpentier.",
-                    artists: ["Direction : Danielle Lapierre"],
-                    type: "Grand Concert"
-                }
+                { time: "14h30", location: "Église d'Angey", title: "Concours Jeunes Talents", description: "7 jeunes musiciens de niveau Cycle 3 (cordes) accompagnés au piano. Prix du Jury et du Public.", artists: ["Jeunes talents régionaux"], type: "Compétition" },
+                { time: "17h30", location: "Manoir d'Angey", title: "Orchestre Symphonique Opus 50", description: "Programme : Debussy (La Mer), Smetana (La Moldau), Ravel, Beethoven, D. Charpentier.", artists: ["Direction : Danielle Lapierre"], type: "Grand Concert" }
             ]
         };
 
         // --- INITIALISATION ---
         window.addEventListener('DOMContentLoaded', () => {
-            // 1. Charger les images
             document.getElementById('img-hero').src = FESTIVAL_IMAGES.hero;
             document.getElementById('img-plan').src = FESTIVAL_IMAGES.plan;
             document.getElementById('img-ambiance').src = FESTIVAL_IMAGES.ambiance;
             document.getElementById('img-opus50').src = FESTIVAL_IMAGES.opus50;
             document.getElementById('img-piano').src = FESTIVAL_IMAGES.piano;
             document.getElementById('img-jeunes').src = FESTIVAL_IMAGES.jeunes;
-
-            // 2. Charger les icones
             lucide.createIcons();
-
-            // 3. Charger le programme par défaut (Jour 7)
             switchDay(7);
         });
 
         // --- FONCTIONNALITÉS ---
 
-        // Toggle Mobile Menu
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+        mobileLinks.forEach(link => { link.addEventListener('click', () => { menu.classList.add('hidden'); }); });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // Navbar Scroll Effect
+        // Navbar Scroll Effect avec Changement de Couleur
         const navbar = document.getElementById('navbar');
+        const navLogo = document.getElementById('nav-logo');
+        const navItems = document.querySelectorAll('.nav-item');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                // Style Scrolled (Fond blanc, texte foncé)
+                navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'py-3');
                 navbar.classList.remove('bg-transparent', 'py-6');
+                
+                // Logo en noir
+                navLogo.classList.remove('text-white');
+                navLogo.classList.add('text-slate-900');
+                
+                // Liens en gris foncé
+                navItems.forEach(item => {
+                    item.classList.remove('text-white', 'drop-shadow-sm');
+                    item.classList.add('text-slate-600');
+                });
+
+                // Mobile Btn
+                mobileMenuBtn.classList.remove('text-white');
+                mobileMenuBtn.classList.add('text-slate-900');
+
             } else {
-                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                // Style Top (Transparent, texte blanc)
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'py-3');
                 navbar.classList.add('bg-transparent', 'py-6');
+                
+                // Logo en blanc
+                navLogo.classList.add('text-white');
+                navLogo.classList.remove('text-slate-900');
+                
+                // Liens en blanc
+                navItems.forEach(item => {
+                    item.classList.add('text-white', 'drop-shadow-sm');
+                    item.classList.remove('text-slate-600');
+                });
+
+                // Mobile Btn
+                mobileMenuBtn.classList.add('text-white');
+                mobileMenuBtn.classList.remove('text-slate-900');
             }
         });
 
-        // Programme Tab Switcher
         function switchDay(day) {
-            // Update Tab Styles
             [7, 8, 9].forEach(d => {
                 const tab = document.getElementById(`tab-${d}`);
                 if (d === day) {
@@ -502,13 +480,9 @@
                     tab.className = 'tab-inactive flex flex-col items-center justify-center w-28 h-32 rounded-2xl transition-all duration-300';
                 }
             });
-
-            // Update Content
             const container = document.getElementById('events-container');
-            container.innerHTML = ''; // Clear current content
-            
+            container.innerHTML = ''; 
             const events = programData[day];
-            
             events.forEach(event => {
                 const html = `
                 <div class="group bg-white rounded-3xl p-1 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 fade-in-up">
@@ -527,21 +501,13 @@
                             <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">${event.title}</h3>
                             <p class="text-slate-600 mb-4 leading-relaxed">${event.description}</p>
                             <div class="space-y-1">
-                                ${event.artists.map(artist => `
-                                    <div class="flex items-center text-slate-800 font-medium text-sm">
-                                        <i data-lucide="chevron-right" class="w-4 h-4 mr-2 text-blue-400"></i>
-                                        ${artist}
-                                    </div>
-                                `).join('')}
+                                ${event.artists.map(artist => `<div class="flex items-center text-slate-800 font-medium text-sm"><i data-lucide="chevron-right" class="w-4 h-4 mr-2 text-blue-400"></i>${artist}</div>`).join('')}
                             </div>
                         </div>
                     </div>
-                </div>
-                `;
+                </div>`;
                 container.innerHTML += html;
             });
-            
-            // Re-initialize icons for the new content
             lucide.createIcons();
         }
     </script>
