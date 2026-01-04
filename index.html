@@ -32,7 +32,7 @@
             <!-- Logo -->
             <a href="#hero" class="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2 group">
                 <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-serif italic group-hover:bg-blue-700 transition-colors">M</div>
-                <span>Musicales<span class="text-blue-600">.</span></span>
+                <span>Les Musicales d'Angey<span class="text-blue-600">.</span></span>
             </a>
             
             <!-- Desktop Menu -->
@@ -41,8 +41,9 @@
                 <a href="#programme" class="hover:text-blue-600 transition-colors">Programme</a>
                 <a href="#artistes" class="hover:text-blue-600 transition-colors">Artistes</a>
                 <a href="#infos" class="hover:text-blue-600 transition-colors">Infos</a>
-                <a href="#contact" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 transform hover:-translate-y-0.5">
-                    Contactez-nous
+                <!-- Bouton Billetterie HelloAsso -->
+                <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <i data-lucide="ticket" class="w-4 h-4"></i> Billetterie
                 </a>
             </div>
 
@@ -58,8 +59,8 @@
             <a href="#programme" class="mobile-link text-lg font-medium text-slate-600">Programme</a>
             <a href="#artistes" class="mobile-link text-lg font-medium text-slate-600">Artistes</a>
             <a href="#infos" class="mobile-link text-lg font-medium text-slate-600">Infos</a>
-            <a href="#contact" class="mobile-link bg-blue-600 text-white px-8 py-3 rounded-full w-full max-w-xs shadow-lg shadow-blue-600/20 text-center">
-                Contactez-nous
+            <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="mobile-link bg-blue-600 text-white px-8 py-3 rounded-full w-full max-w-xs shadow-lg shadow-blue-600/20 text-center flex items-center justify-center gap-2">
+                <i data-lucide="ticket" class="w-5 h-5"></i> Billetterie
             </a>
         </div>
     </nav>
@@ -84,8 +85,9 @@
                 Entre Manoir historique et Église à l'acoustique remarquable.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" class="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2 group">
-                    Nous contacter <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                <!-- Bouton Hero Billetterie -->
+                <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2 group">
+                    Billetterie <i data-lucide="ticket" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
                 </a>
                 <a href="#programme" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full hover:bg-white/20 transition-all font-semibold">
                     Découvrir le programme
@@ -331,7 +333,7 @@
                 <div>
                     <div class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                         <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-serif italic text-sm">M</div>
-                        Musicales.
+                        Les Musicales d'Angey.
                     </div>
                     <p class="opacity-60 leading-relaxed max-w-xs">
                         Un événement organisé avec passion par l'association <strong>Angey Baie Bocage Animations (ABBA)</strong>.
@@ -372,22 +374,22 @@
     <script>
         // --- CONFIGURATION DES IMAGES ---
         // INSTRUCTIONS POUR VOUS :
-        // J'ai configuré les chemins pour pointer vers le dossier /Images/
+        // J'ai configuré les chemins pour pointer vers le dossier Images/
         // Vous pouvez changer l'image Hero en décommentant (enlevant les //) devant la ligne souhaitée
         
         const FESTIVAL_IMAGES = {
             // --- CHOIX DE LA COUVERTURE (HERO) ---
             // Décommentez la ligne correspondant à l'image que vous voulez utiliser :
             hero: "Images/hero-1.jpeg", 
-            // hero: "/Images/hero-2.jpg",
-            // hero: "/Images/hero-3.jpg",
+            // hero: "Images/hero-2.jpg",
+            // hero: "Images/hero-3.jpg",
             
             // --- AUTRES IMAGES ---
-            // J'ai mis à jour les chemins pour utiliser le dossier /Images/
-            plan: "/Images/festival plan 2.png",
-            ambiance: "/Images/IMG_5474.jpg",
+            // J'ai mis à jour les chemins pour utiliser le dossier Images/
+            plan: "Images/festival plan 2.png",
+            ambiance: "Images/IMG_5474.jpg",
 
-            // Images des artistes (Laissez tel quel ou mettez vos propres images dans /Images/)
+            // Images des artistes (Laissez tel quel ou mettez vos propres images dans Images/)
             opus50: "https://images.unsplash.com/photo-1552422535-c45813c61732?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
             piano: "https://images.unsplash.com/photo-1549643276-fbc2bd4d5884?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
             jeunes: "https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
