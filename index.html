@@ -79,20 +79,24 @@
             <div class="inline-block px-4 py-1.5 rounded-full bg-blue-600/30 backdrop-blur-md border border-blue-400/50 text-blue-50 font-medium text-sm mb-6 shadow-lg">
                 7, 8 & 9 Mai 2026 • Angey (50)
             </div>
-            <!-- Ajout de drop-shadow-xl pour détacher le titre de l'image -->
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight drop-shadow-xl">
+            
+            <!-- Ajout de drop-shadow-2xl pour détacher le titre -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight drop-shadow-2xl">
                 Les Musicales d'Angey
             </h1>
-            <p class="text-lg md:text-xl text-slate-100 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md font-medium">
+            
+            <!-- MODIFICATION ICI : Ajout d'un fond sombre semi-transparent autour du texte -->
+            <p class="text-lg md:text-xl text-slate-50 mb-10 max-w-3xl mx-auto leading-relaxed font-medium bg-slate-900/60 backdrop-blur-sm p-6 rounded-2xl border border-white/10 shadow-2xl">
                 Un festival d'exception au cœur de la Baie. <br>
                 Entre Manoir historique et Église à l'acoustique remarquable.
             </p>
+            
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <!-- Bouton Hero Billetterie -->
                 <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold shadow-xl shadow-blue-900/40 flex items-center justify-center gap-2 group border border-blue-400/30">
                     Billetterie <i data-lucide="ticket" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
                 </a>
-                <!-- Bouton Programme renforcé : Fond plus sombre pour lisibilité -->
+                <!-- Bouton Programme renforcé -->
                 <a href="#programme" class="bg-black/40 backdrop-blur-md border border-white/40 text-white px-8 py-4 rounded-full hover:bg-black/60 transition-all font-semibold shadow-lg">
                     Découvrir le programme
                 </a>
@@ -137,7 +141,7 @@
                 
                 <div class="relative">
                     <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-                        <img id="img-ambiance" src="" alt="Concert intimiste" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        <img id="img-ambiance" src="Images/edition-2023.jpeg" alt="Concert intimiste" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                     </div>
                     <div class="absolute -bottom-8 -left-8 bg-blue-600 p-8 rounded-3xl shadow-xl max-w-xs hidden md:block">
                         <p class="font-medium text-white/90 italic text-lg">"Chaque événement promet un moment suspendu."</p>
@@ -381,9 +385,9 @@
             // hero: "Images/hero-1.jpeg", 
             // hero: "Images/hero-2.jpeg",
             hero: "Images/hero-3.jpeg", 
-            
+    
             plan: "Images/festival plan 2.png",
-            ambiance: "Images/IMG_5474.jpg",
+            ambiance: "Images/edition-2023.jpeg",
             opus50: "https://images.unsplash.com/photo-1552422535-c45813c61732?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
             piano: "https://images.unsplash.com/photo-1549643276-fbc2bd4d5884?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
             jeunes: "https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
