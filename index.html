@@ -22,6 +22,9 @@
         .tab-active { background-color: #2563eb; color: white; transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4); }
         .tab-inactive { background-color: white; color: #94a3b8; }
         .tab-inactive:hover { color: #2563eb; background-color: #f8fafc; }
+
+        /* Masquer la scrollbar quand la modale est ouverte */
+        body.modal-open { overflow: hidden; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 selection:bg-blue-200">
@@ -40,6 +43,7 @@
                 <a href="#festival" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Festival</a>
                 <a href="#programme" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Programme</a>
                 <a href="#artistes" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Artistes</a>
+                <a href="#photos" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Photos</a>
                 <a href="#infos" class="nav-item text-white hover:text-blue-400 transition-colors drop-shadow-sm">Infos</a>
                 <!-- Bouton Billetterie HelloAsso -->
                 <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30 transform hover:-translate-y-0.5 flex items-center gap-2 border border-blue-500/50">
@@ -58,6 +62,7 @@
             <a href="#festival" class="mobile-link text-lg font-medium text-slate-600">Festival</a>
             <a href="#programme" class="mobile-link text-lg font-medium text-slate-600">Programme</a>
             <a href="#artistes" class="mobile-link text-lg font-medium text-slate-600">Artistes</a>
+            <a href="#photos" class="mobile-link text-lg font-medium text-slate-600">Photos</a>
             <a href="#infos" class="mobile-link text-lg font-medium text-slate-600">Infos</a>
             <a href="https://www.helloasso.com/associations/angey-baie-bocage-animation/evenements/les-musicales-d-angey-2" target="_blank" class="mobile-link bg-blue-600 text-white px-8 py-3 rounded-full w-full max-w-xs shadow-lg shadow-blue-600/20 text-center flex items-center justify-center gap-2">
                 <i data-lucide="ticket" class="w-5 h-5"></i> Billetterie
@@ -196,57 +201,99 @@
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-4 gap-6">
-                <!-- Card 1: Eric Kadouch -->
-                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-                    <div class="w-24 h-24 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
-                        <img id="img-piano" src="" alt="Eric Kadouch" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">Eric Kadouch</h3>
-                    <p class="text-blue-400 text-sm font-medium mb-4">Piano</p>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Soliste talentueux, il ouvrira le festival lors d'une soirée "Le classique pas si classique".
-                    </p>
-                </div>
-
-                <!-- Card 2: Philippe Chalard -->
-                 <div class="group relative bg-slate-800/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-                    <div class="w-24 h-24 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
-                        <img id="img-guitare" src="" alt="Philippe Chalard" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">Philippe Chalard</h3>
-                    <p class="text-blue-400 text-sm font-medium mb-4">Guitare</p>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Virtuose de la guitare, il accompagnera l'ouverture du festival en duo avec Eric Kadouch.
-                    </p>
-                </div>
-
-                <!-- Card 3: Opus 50 -->
-                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-                    <div class="w-24 h-24 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
-                        <img id="img-opus50" src="" alt="Orchestre" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">Opus 50</h3>
-                    <p class="text-blue-400 text-sm font-medium mb-4">Orchestre Symphonique</p>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Sous la direction de Danielle Lapierre, l'orchestre interprétera des œuvres majeures.
-                    </p>
-                </div>
-
-                <!-- Card 4: Jeunes Talents -->
-                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800">
-                    <div class="w-24 h-24 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
-                        <img id="img-jeunes" src="" alt="Jeunes Talents" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">Jeunes Talents</h3>
-                    <p class="text-blue-400 text-sm font-medium mb-4">Concours / Tremplin</p>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Découvrez les virtuoses de demain. 7 musiciens (cycle 3) s'affronteront.
-                    </p>
-                </div>
+            <!-- Dynamic Grid for Artists -->
+            <div id="artists-grid" class="grid md:grid-cols-4 gap-6">
+                <!-- Artists will be injected via JS -->
             </div>
         </div>
     </section>
+
+    <!-- Section Photos (Mashup / Pele mele) -->
+    <section id="photos" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-blue-600 font-bold tracking-wide uppercase text-sm mb-2">Souvenirs</h2>
+                <h3 class="text-4xl font-bold text-slate-900 mb-4">Retour en Images</h3>
+                <p class="text-slate-500 text-lg">Les moments forts des éditions précédentes</p>
+            </div>
+
+            <!-- Masonry Grid -->
+            <!-- Note: columns-2 md:columns-3 gap-4 creates the masonry effect -->
+            <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4" id="photo-gallery">
+                <!-- Les images seront injectées ici par JS pour plus de flexibilité -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal / Slideshow Overlay -->
+    <div id="image-modal" class="fixed inset-0 z-[100] bg-black/95 hidden flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button id="modal-close" class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-20">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <button id="modal-prev" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-20 p-2">
+            <i data-lucide="chevron-left" class="w-12 h-12"></i>
+        </button>
+        <button id="modal-next" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-20 p-2">
+            <i data-lucide="chevron-right" class="w-12 h-12"></i>
+        </button>
+        <div class="relative max-w-[90vw] max-h-[90vh]">
+            <img id="modal-image" src="" alt="Agrandissement" class="max-h-[85vh] w-auto object-contain rounded shadow-2xl">
+            <p id="modal-caption" class="text-center text-white/80 mt-4 font-serif italic text-lg"></p>
+        </div>
+    </div>
+
+    <!-- INFO / CONCOURS MODAL -->
+    <div id="info-modal" class="fixed inset-0 z-[100] bg-black/60 hidden flex justify-center items-center opacity-0 transition-opacity duration-300 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+            <!-- Close Button -->
+            <button onclick="closeInfoModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors p-2 bg-slate-100 rounded-full">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Content -->
+            <div class="p-8">
+                <h3 class="text-2xl font-bold text-slate-900 mb-2 font-serif">Concours Jeunes Talents</h3>
+                <p class="text-blue-600 font-medium mb-6">Tremplin musical pour les élèves de 3ème cycle</p>
+                
+                <div class="prose prose-slate prose-sm text-slate-600 leading-relaxed mb-8">
+        
+                    <p class="mb-4">
+                        Dans le cadre du festival, nous souhaitons mettre en avant la formation musicale et l’intérêt des jeunes pour la musique en proposant un Concours/tremplin public aux élèves du 3ème cycle dans les classes de violon, violoncelle et guitare.
+                    </p>
+                    
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-4">
+                        <h4 class="font-bold text-slate-800 mb-2">Règlement & Prix</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>Programme libre :</strong> Interprétation de 1 œuvre en solo ou accompagnée d’un(e) pianiste (qui peut être l'accompagnateur-trice du candidat).</li>
+                            <li><strong>Durée :</strong> La prestation totale est limitée à 10 mn.</li>
+                            <li><strong>Jury :</strong> 5 professionnels représentant tous les types d'instruments + Prix du public.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 text-center mb-6">
+                        <div class="bg-blue-50 p-2 rounded-lg">
+                            <span class="block text-xs uppercase text-blue-600 font-bold">Date</span>
+                            <span class="block font-bold text-slate-900">9 Mai 2026</span>
+                        </div>
+                        <div class="bg-blue-50 p-2 rounded-lg">
+                            <span class="block text-xs uppercase text-blue-600 font-bold">Heure</span>
+                            <span class="block font-bold text-slate-900">14h30</span>
+                        </div>
+                        <div class="bg-blue-50 p-2 rounded-lg">
+                            <span class="block text-xs uppercase text-blue-600 font-bold">Lieu</span>
+                            <span class="block font-bold text-slate-900">Église d'Angey</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a href="https://alexhumeau.typeform.com/to/WvPR2wo7" target="_blank" class="block w-full bg-blue-600 text-white text-center py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-blue-600/30">
+                    Remplir le formulaire d'inscription
+                </a>
+                <p class="text-center text-xs text-slate-400 mt-2">Via Typeform sécurisé</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Infos Pratiques -->
     <section id="infos" class="py-24 bg-white">
@@ -296,21 +343,24 @@
                     </div>
                 </div>
 
-                <!-- Info Right (Map Image) -->
-                <div class="h-full min-h-[400px] bg-slate-200 rounded-[2.5rem] overflow-hidden relative shadow-inner group">
-                    <img id="img-plan" src="" alt="Plan du festival" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
-                    <div class="absolute inset-0 flex items-center justify-center p-8 pointer-events-none">
-                        <div class="bg-white/95 backdrop-blur-md p-8 rounded-3xl shadow-2xl max-w-sm text-center transform group-hover:scale-105 transition-transform duration-300">
-                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-600/30">
-                                <i data-lucide="map-pin" class="w-8 h-8 text-white"></i>
+                <!-- Info Right (Plan Image with Direction Button) -->
+                <div class="h-full min-h-[400px] bg-slate-200 rounded-[2.5rem] overflow-hidden relative shadow-inner shadow-slate-200/50 border border-slate-200 group">
+                    <!-- Image statique pour le plan -->
+                    <img id="img-plan-location" src="" alt="Plan d'accès" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    
+                    <div class="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/20"></div>
+
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <!-- Lien vers Google Maps -->
+                        <a href="https://maps.app.goo.gl/m7DMFKu7T3BJMHvx5" target="_blank" class="pointer-events-auto bg-white/95 backdrop-blur-md px-8 py-4 rounded-full shadow-2xl flex items-center gap-3 hover:bg-blue-600 hover:text-white transition-all transform hover:scale-105 group/btn">
+                            <div class="bg-blue-100 p-2 rounded-full group-hover/btn:bg-white/20 transition-colors">
+                                <i data-lucide="navigation" class="w-6 h-6 text-blue-600 group-hover/btn:text-white transition-colors"></i>
                             </div>
-                            <h3 class="font-bold text-xl mb-1 text-slate-900">Angey (50)</h3>
-                            <p class="text-slate-500 mb-6 text-sm">Entre Avranches et Granville</p>
-                            <div class="space-y-3 text-sm text-left bg-slate-50 p-4 rounded-xl">
-                                <div class="flex items-center text-slate-700"><div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div> Manoir d'Angey</div>
-                                <div class="flex items-center text-slate-700"><div class="w-2 h-2 bg-slate-400 rounded-full mr-3"></div> Église d'Angey</div>
+                            <div>
+                                <span class="block text-xs font-bold uppercase tracking-wider opacity-70 mb-0.5">S'y rendre</span>
+                                <span class="block font-bold text-lg leading-none">Ouvrir le GPS</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -335,10 +385,17 @@
                         <i data-lucide="mail" class="mr-2 w-5 h-5"></i>
                         Nous écrire
                     </a>
-                    <a href="tel:0233000000" class="bg-blue-700 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-800 transition-colors flex items-center justify-center border border-blue-500">
-                        <i data-lucide="phone" class="mr-2 w-5 h-5"></i>
-                        02 33 00 00 00
-                    </a>
+                    <!-- MISE A JOUR DU TELEPHONE ICI -->
+                    <div class="flex flex-col gap-2">
+                        <a href="tel:0681346178" class="bg-blue-700 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition-colors flex items-center justify-center border border-blue-500">
+                            <i data-lucide="phone" class="mr-2 w-5 h-5"></i>
+                            06 81 34 61 78
+                        </a>
+                        <a href="tel:0672487151" class="bg-blue-700 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition-colors flex items-center justify-center border border-blue-500">
+                            <i data-lucide="phone" class="mr-2 w-5 h-5"></i>
+                            06 72 48 71 51
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -351,6 +408,9 @@
                     <p class="opacity-60 leading-relaxed max-w-xs">
                         Un événement organisé avec passion par l'association <strong>Angey Baie Bocage Animations (ABBA)</strong>.
                     </p>
+                    <div class="mt-4">
+                        <img src="Images/ABBA logo officiel.png" alt="Logo ABBA" class="h-16 w-auto opacity-80 hover:opacity-100 transition-opacity">
+                    </div>
                 </div>
                 
                 <div>
@@ -365,10 +425,12 @@
 
                 <div>
                     <h4 class="text-white font-bold mb-6">Partenaires</h4>
-                    <div class="flex gap-4 opacity-40 mb-4">
-                        <div class="h-10 w-16 bg-white/20 rounded"></div>
-                        <div class="h-10 w-16 bg-white/20 rounded"></div>
-                        <div class="h-10 w-16 bg-white/20 rounded"></div>
+                    <!-- Logos des sponsors ajoutés ici -->
+                    <div class="flex gap-4 opacity-70 mb-4 flex-wrap">
+                        <img src="Images/sponsors/superu.jpg" alt="Super U" class="h-12 w-auto bg-white rounded p-1 object-contain">
+                        <img src="Images/sponsors/sartilly.jpg" alt="Sartilly" class="h-12 w-auto bg-white rounded p-1 object-contain">
+                        <img src="Images/sponsors/ca-normandie.jpg" alt="CA Normandie" class="h-12 w-auto bg-white rounded p-1 object-contain">
+                        <img src="Images/sponsors/ministere-education.jpg" alt="Ministère Éducation" class="h-12 w-auto bg-white rounded p-1 object-contain">
                     </div>
                     <p class="opacity-40 text-xs">
                         Avec le soutien du Conseil Départemental de la Manche et de la commune de Sartilly-Baie-Bocage.
@@ -378,7 +440,7 @@
             
             <div class="pt-8 text-center text-xs opacity-30 flex justify-between items-center">
                 <span>&copy; 2026 Les Musicales d'Angey.</span>
-                <span>Design moderne & frais.</span>
+                <span>Site fait par <a href="https://alexandrehumeau.com" target="_blank" class="hover:text-white transition-colors">alexandre humeau</a></span>
             </div>
         </div>
     </footer>
@@ -387,18 +449,27 @@
     <script>
         // --- CONFIGURATION DES IMAGES ---
         const FESTIVAL_IMAGES = {
-            // hero: "Images/hero-1.jpeg", 
-            // hero: "Images/hero-2.jpeg",
-            hero: "Images/hero-3.jpeg", 
+            // General
+            hero: "Images/hero-3.jpg", 
+            plan: "Images/plan.jpg", // Mise à jour vers le fichier image
+            ambiance: "Images/edition-2023.jpg",
             
-            plan: "Images/festival plan 2.png",
-            ambiance: "Images/IMG_5474.jpg",
+            // Artistes (Dossier 'artistes') - Tous en .jpg
+            piano: "Images/artistes/eric-kadouch-g.jpg", 
+            guitare: "Images/artistes/philippe-chalard-g.jpg",
+            
+            // Duo Voix/Piano
+            humeau: "Images/artistes/eugenie-humeau.jpg",
+            gusieva: "Images/artistes/anna-gusieva.jpg",
+            
+            // Quatuor
+            serna: "Images/artistes/alejandro-sema-acero.jpg",
+            perez: "Images/artistes/isabelle-perez.jpg",
+            girard: "Images/artistes/mayeul-girard.jpg",
+            andre: "Images/artistes/stephane-andre.jpg",
+            
+            // Ensembles
             opus50: "https://images.unsplash.com/photo-1552422535-c45813c61732?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-            
-            // Photos des Artistes
-            piano: "Images/eric-kadouch-g.png", // Eric Kadouch
-            guitare: "Images/philippe-chalard-g.png", // Philippe Chalard
-            
             jeunes: "https://images.unsplash.com/photo-1514117445516-2ecfc9c4ec90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
         };
 
@@ -423,8 +494,8 @@
                     title: "Récital Voix et Piano", 
                     description: "Un voyage lyrique envoûtant.", 
                     artists: [
-                        { name: "Eugénie Humeau", image: null },
-                        { name: "Anna Gusieva", image: null }
+                        { name: "Eugénie Humeau", image: "humeau" },
+                        { name: "Anna Gusieva", image: "gusieva" }
                     ], 
                     type: "Concert" 
                 },
@@ -434,10 +505,10 @@
                     title: "Quatuor à Cordes", 
                     description: "Des chefs-d'œuvre de la musique de chambre.", 
                     artists: [
-                        { name: "Alejandro Serna-Acero (Violon)", image: null },
-                        { name: "Isabelle Perez (Violon)", image: null },
-                        { name: "Mayeul Girard (Alto)", image: null },
-                        { name: "Stéphane André (Violoncelle)", image: null }
+                        { name: "Alejandro Serna-Acero (Violon)", image: "serna" },
+                        { name: "Isabelle Perez (Violon)", image: "perez" },
+                        { name: "Mayeul Girard (Alto)", image: "girard" },
+                        { name: "Stéphane André (Violoncelle)", image: "andre" }
                     ], 
                     type: "Concert" 
                 }
@@ -449,9 +520,10 @@
                     title: "Concours Jeunes Talents", 
                     description: "7 jeunes musiciens de niveau Cycle 3 (cordes) accompagnés au piano. Prix du Jury et du Public.", 
                     artists: [
-                        { name: "Jeunes talents régionaux", image: null }
+                        { name: "Jeunes talents régionaux", image: "jeunes" }
                     ], 
-                    type: "Compétition" 
+                    type: "Compétition",
+                    hasMoreInfo: true // Trigger for the "Plus d'infos" button
                 },
                 { 
                     time: "17h30", 
@@ -459,22 +531,57 @@
                     title: "Orchestre Symphonique Opus 50", 
                     description: "Programme : Debussy (La Mer), Smetana (La Moldau), Ravel, Beethoven, D. Charpentier.", 
                     artists: [
-                        { name: "Direction : Danielle Lapierre", image: null }
+                        { name: "Direction : Danielle Lapierre", image: "opus50" }
                     ], 
                     type: "Grand Concert" 
                 }
             ]
         };
 
+        // Données pour la galerie des artistes (Triees par ordre alphabetique)
+        const artistsGallery = [
+            { name: "Alejandro Serna-Acero", role: "Violon", desc: "Premier violon du Quatuor à cordes.", image: "serna", schedule: "Vendredi 8 Mai à 17h30" },
+            { name: "Anna Gusieva", role: "Piano", desc: "Accompagnatrice talentueuse pour le récital Voix et Piano.", image: "gusieva", schedule: "Vendredi 8 Mai à 14h30" },
+            { name: "Eric Kadouch", role: "Piano", desc: "Soliste talentueux, il ouvrira le festival lors d'une soirée 'Le classique pas si classique'.", image: "piano", schedule: "Jeudi 7 Mai à 20h30" },
+            { name: "Eugénie Humeau", role: "Voix", desc: "Une voix envoûtante pour un voyage lyrique exceptionnel.", image: "humeau", schedule: "Vendredi 8 Mai à 14h30" },
+            { name: "Isabelle Perez", role: "Violon", desc: "Second violon, apportant richesse et harmonie au quatuor.", image: "perez", schedule: "Vendredi 8 Mai à 17h30" },
+            { name: "Jeunes Talents", role: "Concours / Tremplin", desc: "Découvrez les virtuoses de demain lors du concours régional.", image: "jeunes", schedule: "Samedi 9 Mai à 14h30" },
+            { name: "Mayeul Girard", role: "Alto", desc: "La voix intermédiaire essentielle du quatuor.", image: "girard", schedule: "Vendredi 8 Mai à 17h30" },
+            { name: "Opus 50", role: "Orchestre Symphonique", desc: "Sous la direction de Danielle Lapierre, interprétation d'œuvres majeures.", image: "opus50", schedule: "Samedi 9 Mai à 17h30" },
+            { name: "Philippe Chalard", role: "Guitare", desc: "Virtuose de la guitare, il accompagnera l'ouverture du festival en duo avec Eric Kadouch.", image: "guitare", schedule: "Jeudi 7 Mai à 20h30" },
+            { name: "Stéphane André", role: "Violoncelle", desc: "La fondation rythmique et mélodique du groupe.", image: "andre", schedule: "Vendredi 8 Mai à 17h30" }
+        ];
+
+        // --- GALERIE PHOTOS ---
+        // Liste des photos (Modifiées selon la demande)
+        const concertPhotos = [
+            "Images/Photos/1.jpg",
+            "Images/Photos/2.jpg",
+            "Images/Photos/3.jpg",
+            "Images/Photos/4.jpg",
+            "Images/Photos/5.jpg",
+            "Images/Photos/6.jpg",
+            "Images/Photos/7.jpg",
+            // "Images/Photos/8.jpg", (Supprimée)
+            // "Images/Photos/9.jpg", (Supprimée)
+            "Images/Photos/10.jpg",
+            // "Images/Photos/11.jpg", (Supprimée)
+            "Images/Photos/12.jpg",
+            "Images/Photos/13.jpg",
+            "Images/Photos/14.jpg"
+        ];
+
+        let currentPhotoIndex = 0;
+
         // --- INITIALISATION ---
         window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('img-hero').src = FESTIVAL_IMAGES.hero;
-            document.getElementById('img-plan').src = FESTIVAL_IMAGES.plan;
+            document.getElementById('img-plan-location').src = FESTIVAL_IMAGES.plan; 
             document.getElementById('img-ambiance').src = FESTIVAL_IMAGES.ambiance;
-            document.getElementById('img-opus50').src = FESTIVAL_IMAGES.opus50;
-            document.getElementById('img-piano').src = FESTIVAL_IMAGES.piano;
-            document.getElementById('img-guitare').src = FESTIVAL_IMAGES.guitare;
-            document.getElementById('img-jeunes').src = FESTIVAL_IMAGES.jeunes;
+            
+            renderArtists();
+            renderPhotoGallery();
+            
             lucide.createIcons();
             switchDay(7);
         });
@@ -488,7 +595,7 @@
         btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
         mobileLinks.forEach(link => { link.addEventListener('click', () => { menu.classList.add('hidden'); }); });
 
-        // Navbar Scroll Effect avec Changement de Couleur
+        // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('nav-logo');
         const navItems = document.querySelectorAll('.nav-item');
@@ -496,40 +603,25 @@
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                // Style Scrolled (Fond blanc, texte foncé)
                 navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'py-3');
                 navbar.classList.remove('bg-transparent', 'py-6');
-                
-                // Logo en noir
                 navLogo.classList.remove('text-white');
                 navLogo.classList.add('text-slate-900');
-                
-                // Liens en gris foncé
                 navItems.forEach(item => {
                     item.classList.remove('text-white', 'drop-shadow-sm');
                     item.classList.add('text-slate-600');
                 });
-
-                // Mobile Btn
                 mobileMenuBtn.classList.remove('text-white');
                 mobileMenuBtn.classList.add('text-slate-900');
-
             } else {
-                // Style Top (Transparent, texte blanc)
                 navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'py-3');
                 navbar.classList.add('bg-transparent', 'py-6');
-                
-                // Logo en blanc
                 navLogo.classList.add('text-white');
                 navLogo.classList.remove('text-slate-900');
-                
-                // Liens en blanc
                 navItems.forEach(item => {
                     item.classList.add('text-white', 'drop-shadow-sm');
                     item.classList.remove('text-slate-600');
                 });
-
-                // Mobile Btn
                 mobileMenuBtn.classList.add('text-white');
                 mobileMenuBtn.classList.remove('text-slate-900');
             }
@@ -568,13 +660,15 @@
                                 ${event.artists.map(artist => `
                                     <div class="flex items-center text-slate-800 font-medium text-sm">
                                         <i data-lucide="chevron-right" class="w-4 h-4 mr-2 text-blue-400"></i>
-                                        ${artist.image ? 
+                                        ${artist.image && FESTIVAL_IMAGES[artist.image] ? 
                                             `<img src="${FESTIVAL_IMAGES[artist.image]}" alt="${artist.name}" class="w-8 h-8 rounded-full object-cover mr-2 border border-slate-200">` 
                                             : ''}
                                         ${artist.name}
                                     </div>
                                 `).join('')}
                             </div>
+                            <!-- Bouton "Plus d'infos" pour le concours -->
+                            ${event.hasMoreInfo ? `<button onclick="openInfoModal()" class="mt-6 text-blue-600 font-bold hover:underline text-sm flex items-center bg-blue-50 w-fit px-4 py-2 rounded-full hover:bg-blue-100 transition-colors"><i data-lucide="info" class="w-4 h-4 mr-2"></i>Plus d'infos & Inscription</button>` : ''}
                         </div>
                     </div>
                 </div>`;
@@ -582,6 +676,112 @@
             });
             lucide.createIcons();
         }
+
+        function renderArtists() {
+            const grid = document.getElementById('artists-grid');
+            grid.innerHTML = artistsGallery.map(artist => `
+                <div class="group relative bg-slate-800/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all hover:bg-slate-800 flex flex-col h-full">
+                    <div class="w-24 h-24 bg-slate-700 rounded-2xl mb-6 overflow-hidden shadow-lg group-hover:scale-110 transition-transform">
+                        <img src="${FESTIVAL_IMAGES[artist.image]}" alt="${artist.name}" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-1">${artist.name}</h3>
+                    <p class="text-blue-400 text-sm font-medium mb-4">${artist.role}</p>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-4 flex-grow">
+                        ${artist.desc}
+                    </p>
+                    <div class="pt-4 border-t border-slate-700/50 flex items-center text-blue-400 text-xs font-bold uppercase tracking-wider mt-auto">
+                        <i data-lucide="calendar" class="w-3 h-3 mr-2"></i>
+                        ${artist.schedule}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPhotoGallery() {
+            const gallery = document.getElementById('photo-gallery');
+            gallery.innerHTML = concertPhotos.map((photo, index) => `
+                <img 
+                    src="${photo}" 
+                    alt="Photo ${index + 1}" 
+                    class="mb-4 rounded-xl break-inside-avoid shadow-lg hover:shadow-2xl hover:opacity-90 transition-all duration-300 cursor-pointer w-full"
+                    onclick="openModal(${index})"
+                >
+            `).join('');
+        }
+
+        // --- MODAL LOGIC (Images) ---
+        function openModal(index) {
+            currentPhotoIndex = index;
+            const modal = document.getElementById('image-modal');
+            const img = document.getElementById('modal-image');
+            img.src = concertPhotos[currentPhotoIndex];
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.classList.remove('modal-open');
+            }, 300);
+        }
+
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % concertPhotos.length;
+            document.getElementById('modal-image').src = concertPhotos[currentPhotoIndex];
+        }
+
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + concertPhotos.length) % concertPhotos.length;
+            document.getElementById('modal-image').src = concertPhotos[currentPhotoIndex];
+        }
+
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('modal-next').addEventListener('click', (e) => { e.stopPropagation(); nextPhoto(); });
+        document.getElementById('modal-prev').addEventListener('click', (e) => { e.stopPropagation(); prevPhoto(); });
+        document.getElementById('image-modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('image-modal')) closeModal();
+        });
+
+        // --- MODAL LOGIC (Info/Concours) ---
+        function openInfoModal() {
+            const modal = document.getElementById('info-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            document.body.classList.add('modal-open');
+        }
+
+        function closeInfoModal() {
+            const modal = document.getElementById('info-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.classList.remove('modal-open');
+            }, 300);
+        }
+
+        document.getElementById('info-modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('info-modal')) closeInfoModal();
+        });
+
+        // Keyboard navigation (Shared)
+        document.addEventListener('keydown', (e) => {
+            const imgModal = document.getElementById('image-modal');
+            const infoModal = document.getElementById('info-modal');
+            
+            if (!imgModal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') nextPhoto();
+                if (e.key === 'ArrowLeft') prevPhoto();
+            }
+            if (!infoModal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeInfoModal();
+            }
+        });
+
     </script>
 </body>
 </html>
